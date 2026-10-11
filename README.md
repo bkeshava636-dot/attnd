@@ -2,9 +2,12 @@
 
 > Smart, offline student attendance tracker and class schedule for Android.
 
-[![Download APK](https://img.shields.io/badge/Download%20APK-v1.0.0-gold?style=for-the-badge&logo=android&logoColor=black)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)
+[![Download APK](https://img.shields.io/badge/Download_APK-v1.0.0-FFD700?style=for-the-badge&logo=android&logoColor=black&labelColor=1a1a1a)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/bkeshava636-dot/attnd/releases/latest)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20PWA-2ea44f?style=for-the-badge)](https://github.com/bkeshava636-dot/attnd)
+[![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
-[👉 **Download Release APK**](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk) *(3.5 MB • Android 8.0+)*
+[👉 **Direct Download: Attnd-release.apk**](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk) *(3.5 MB • Android 8.0+)*
 
 ---
 
