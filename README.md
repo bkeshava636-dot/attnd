@@ -1,24 +1,10 @@
-# 📱 Attnd — Smart Student Attendance Tracker & Class Schedule
+# 📱 Attnd
 
-<div align="center">
+> Smart, offline student attendance tracker and class schedule for Android.
 
-# 🚀 Download Attnd (Android Release APK)
+[![Download APK](https://img.shields.io/badge/Download%20APK-v1.0.0-gold?style=for-the-badge&logo=android&logoColor=black)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)
 
-[![Download Release APK](https://img.shields.io/badge/📥_Download_Release_APK-v1.0.0-FFD700?style=for-the-badge&logo=android&logoColor=black&labelColor=1a1a1a)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)
-[![GitHub Release](https://img.shields.io/github/v/release/bkeshava636-dot/attnd?style=for-the-badge&color=2ea44f&label=Latest%20Version)](https://github.com/bkeshava636-dot/attnd/releases/latest)
-[![Direct Repo Download](https://img.shields.io/badge/Direct_Repo_Download-APK_(3.48_MB)-blue?style=for-the-badge&logo=github)](https://github.com/bkeshava636-dot/attnd/raw/main/Attnd-release.apk)
-
-### 👉 **[Click Here to Download Latest APK (v1.0.0)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)** 👈
-*(Direct download link • Android 8.0+ supported • Standalone Offline APK • 3.48 MB)*
-
-> 💡 *Alternate direct link from repository files:* **[Download Attnd-release.apk directly](https://github.com/bkeshava636-dot/attnd/raw/main/Attnd-release.apk)**
-
----
-
-**A modern, minimal, Gotham-inspired student productivity app for Android and Web.**  
-Track attendance, calculate safe bunks, configure class timings, manage assignment tasks, and share class schedule templates with your entire class in one click.
-
-</div>
+[👉 **Download Release APK**](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk) *(3.5 MB • Android 8.0+)*
 
 ---
 
