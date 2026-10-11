@@ -22,18 +22,6 @@ Track attendance, calculate safe bunks, configure class timings, manage assignme
 
 ---
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="screenshots/real_device_home.png" width="280" alt="Home Dashboard" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="screenshots/real_device_timetable.png" width="280" alt="Timetable View" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="screenshots/real_device_settings.png" width="280" alt="Settings & Rules" />
-</div>
-
----
-
 ## ⚡ Key Features
 
 ### 1. 🎯 Accurate Attendance & Predictive Math
