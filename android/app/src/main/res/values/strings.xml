@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Attnd</string>
+    <string name="title_activity_main">Attnd</string>
+    <string name="package_name">com.attnd.attendance</string>
+    <string name="custom_url_scheme">com.attnd.attendance</string>
+    <string name="widget_name">Attnd Attendance</string>
+    <string name="widget_description">Quick attendance tracker &amp; class marking</string>
+</resources>

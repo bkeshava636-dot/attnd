@@ -1,0 +1,116 @@
+[
+  {
+    "testNumber": 1,
+    "area": "Mobile Responsive Layout (No horizontal overflow)",
+    "passed": true,
+    "details": "scrollWidth=393, innerWidth=393"
+  },
+  {
+    "testNumber": 2,
+    "area": "Mobile Bottom Navigation Items",
+    "passed": true,
+    "details": "Found 5 mobile navigation items"
+  },
+  {
+    "testNumber": 4,
+    "area": "Load Realistic Sample Setup (Subjects & Timetable)",
+    "passed": true,
+    "details": "Loaded 5 subjects, timetable & rules"
+  },
+  {
+    "testNumber": 3,
+    "area": "Semester Configuration & Editable Dates",
+    "passed": true,
+    "details": "Current semester: 3rd Semester"
+  },
+  {
+    "testNumber": 4,
+    "area": "Timetable Period Cards on Mobile",
+    "passed": true,
+    "details": "Found 6 period cards"
+  },
+  {
+    "testNumber": 5,
+    "area": "Day Switcher Tab (Tuesday Schedule)",
+    "passed": true,
+    "details": "Switched to Tuesday schedule"
+  },
+  {
+    "testNumber": 5,
+    "area": "Saturday Occurrence Rules Engine (1st-5th)",
+    "passed": true,
+    "details": "Found 7 rule controls"
+  },
+  {
+    "testNumber": 6,
+    "area": "Holidays & Academic Events (IAS) Management",
+    "passed": true,
+    "details": "Holidays and IAS managers present"
+  },
+  {
+    "testNumber": 13,
+    "area": "Operations Calendar Grid on Mobile",
+    "passed": true,
+    "details": "Rendered 35 calendar day cells"
+  },
+  {
+    "testNumber": 11,
+    "area": "Subject-Wise Attendance Cards",
+    "passed": true,
+    "details": "Found 5 subject cards with progress & bunk telemetry"
+  },
+  {
+    "testNumber": 12,
+    "area": "Attendance Projection Simulator",
+    "passed": true,
+    "details": "Interactive +attend / +miss sliders active"
+  },
+  {
+    "testNumber": 11,
+    "area": "Overall Attendance HUD Display",
+    "passed": true,
+    "details": "Percentage: 89.4%"
+  },
+  {
+    "testNumber": 8,
+    "area": "Mark Class Present (One-Hand Touch Target)",
+    "passed": true,
+    "details": "Recorded Present status"
+  },
+  {
+    "testNumber": 8,
+    "area": "Mark Class Absent (One-Hand Touch Target)",
+    "passed": true,
+    "details": "Recorded Absent status"
+  },
+  {
+    "testNumber": 9,
+    "area": "Daily Operations Review Modal Fit",
+    "passed": true,
+    "details": "Modal fits mobile screen cleanly"
+  },
+  {
+    "testNumber": 20,
+    "area": "PWA Manifest Installability",
+    "passed": true,
+    "details": "name=\"Attnd - Attendance Tracker\", display=\"standalone\""
+  },
+  {
+    "testNumber": 19,
+    "area": "Offline Service Worker Registered",
+    "passed": true,
+    "details": "PWA service worker active"
+  },
+  {
+    "testNumber": 18,
+    "area": "Data Persistence on Reload (IndexedDB)",
+    "passed": true,
+    "details": "Preserved standing: 88.4%"
+  },
+  {
+    "testNumber": 10,
+    "area": "Runtime Console Stability",
+    "passed": true,
+    "details": "0 runtime console errors"
+  }
+]

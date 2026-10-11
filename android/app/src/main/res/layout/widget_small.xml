@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_small_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:gravity="center">
+
+    <!-- Top Label -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ATTND"
+            android:textColor="@color/widget_gold"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.08" />
+
+        <TextView
+            android:id="@+id/widget_small_status_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAFE"
+            android:textColor="@color/widget_emerald"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Percentage Display -->
+    <TextView
+        android:id="@+id/widget_small_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="--%"
+        android:textColor="@color/widget_gold"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black" />
+
+    <TextView
+        android:id="@+id/widget_small_stats_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target: 85%"
+        android:textColor="@color/widget_text_secondary"
+        android:textSize="10sp" />
+
+    <!-- Divider / Spacer -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/widget_border"
+        android:contentDescription="@null" />
+
+    <!-- Today's next class or status -->
+    <TextView
+        android:id="@+id/widget_small_class_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Classes"
+        android:textColor="@color/widget_text_primary"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/widget_small_class_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:textColor="@color/widget_text_secondary"
+        android:textSize="9sp"
+        android:maxLines="1"
+        android:gravity="center" />
+
+</LinearLayout>

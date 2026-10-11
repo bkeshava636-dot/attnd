@@ -1,0 +1,27 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141824" />
+      <stop offset="100%" stop-color="#07080c" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+  <!-- Background with subtle gold border -->
+  <rect width="96" height="96" x="2" y="2" rx="24" fill="url(#bgGrad)" stroke="#eab308" stroke-opacity="0.3" stroke-width="2" />
+  
+  <!-- Minimalist Geometric Bat-Wing Glyph -->
+  <path d="M50 32 
+           C53 37, 58 39, 63 39 
+           C72 39, 85 46, 88 56 
+           C79 56, 73 63, 67 63 
+           C61 63, 56 59, 50 67 
+           C44 59, 39 63, 33 63 
+           C27 63, 21 56, 12 56 
+           C15 46, 28 39, 37 39 
+           C42 39, 47 37, 50 32 Z" 
+        fill="url(#goldGrad)" 
+        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.6))" />
+</svg>
