@@ -596,7 +596,71 @@ function getContext(): EngineContext {
   assert(parsed.dateSpecificSaturdayRules[0].followsDay === 'monday', `Scenario 23: date-specific Saturday schedule preserved in export`);
 }
 
+// SCENARIO 24: Proctor portal baseline synchronization as of 2026-10-24
+{
+  const testSub: Subject = {
+    id: 'sub_proctor_math',
+    name: 'Mathematics',
+    shortName: 'MATH',
+    type: 'lecture',
+    color: '#3b82f6',
+    isActive: true,
+    initialPresent: 36,
+    initialAbsent: 4,
+    baselineDate: '2026-10-24', // Official portal report date
+    order: 1,
+    createdAt: '2026-08-01T00:00:00Z',
+  };
+
+  // Past records on or before 2026-10-24 (which previously caused 80% to dilute 90% down to 86%)
+  const pastRecords: AttendanceRecord[] = [
+    { id: 'r1', date: '2026-10-10', periodNumber: 1, subjectId: testSub.id, status: 'present', source: 'regular', updatedAt: '2026-10-10T10:00:00Z' },
+    { id: 'r2', date: '2026-10-12', periodNumber: 1, subjectId: testSub.id, status: 'present', source: 'regular', updatedAt: '2026-10-12T10:00:00Z' },
+    { id: 'r3', date: '2026-10-15', periodNumber: 1, subjectId: testSub.id, status: 'absent', source: 'regular', updatedAt: '2026-10-15T10:00:00Z' },
+    { id: 'r4', date: '2026-10-24', periodNumber: 1, subjectId: testSub.id, status: 'absent', source: 'regular', updatedAt: '2026-10-24T10:00:00Z' },
+  ];
+
+  const stats = calculateAttendanceMetrics([testSub], pastRecords, 85);
+  // Records on or before 2026-10-24 must not be double counted
+  assert(stats.subjectStats[0].present === 36, `Scenario 24: Present matches portal baseline (36)`);
+  assert(stats.subjectStats[0].absent === 4, `Scenario 24: Absent matches portal baseline (4)`);
+  assert(stats.subjectStats[0].conducted === 40, `Scenario 24: Conducted matches portal baseline (40)`);
+  assert(stats.subjectStats[0].percentage === 90, `Scenario 24: Percentage is exactly 90% (got ${stats.subjectStats[0].percentage}%), NOT diluted to 86%`);
+}
+
+// SCENARIO 25: Classes marked after cutoff date accumulate accurately on top of baseline
+{
+  const testSub: Subject = {
+    id: 'sub_proctor_math',
+    name: 'Mathematics',
+    shortName: 'MATH',
+    type: 'lecture',
+    color: '#3b82f6',
+    isActive: true,
+    initialPresent: 36,
+    initialAbsent: 4,
+    baselineDate: '2026-10-24',
+    order: 1,
+    createdAt: '2026-08-01T00:00:00Z',
+  };
+
+  const records: AttendanceRecord[] = [
+    // On or before 24 Oct (ignored / covered by baseline)
+    { id: 'r1', date: '2026-10-20', periodNumber: 1, subjectId: testSub.id, status: 'absent', source: 'regular', updatedAt: '2026-10-20T10:00:00Z' },
+    // After 24 Oct (must accumulate)
+    { id: 'r_post_1', date: '2026-10-25', periodNumber: 1, subjectId: testSub.id, status: 'present', source: 'regular', updatedAt: '2026-10-25T10:00:00Z' },
+    { id: 'r_post_2', date: '2026-10-26', periodNumber: 1, subjectId: testSub.id, status: 'absent', source: 'regular', updatedAt: '2026-10-26T10:00:00Z' },
+  ];
+
+  const stats = calculateAttendanceMetrics([testSub], records, 85);
+  assert(stats.subjectStats[0].present === 37, `Scenario 25: Present is 36 + 1 = 37 (got ${stats.subjectStats[0].present})`);
+  assert(stats.subjectStats[0].absent === 5, `Scenario 25: Absent is 4 + 1 = 5 (got ${stats.subjectStats[0].absent})`);
+  assert(stats.subjectStats[0].conducted === 42, `Scenario 25: Conducted is 40 + 2 = 42 (got ${stats.subjectStats[0].conducted})`);
+  const expectedPct = Math.round((37 / 42) * 10000) / 100; // 88.10%
+  assert(stats.subjectStats[0].percentage === expectedPct, `Scenario 25: Percentage is ${expectedPct}% (got ${stats.subjectStats[0].percentage}%)`);
+}
+
 console.log("\n=======================================================");
-console.log("ALL 23 ADVANCED ATTENDANCE SCENARIOS VERIFIED 100% PASSING!");
+console.log("ALL 25 ADVANCED ATTENDANCE SCENARIOS VERIFIED 100% PASSING!");
 console.log("=======================================================\n");
 

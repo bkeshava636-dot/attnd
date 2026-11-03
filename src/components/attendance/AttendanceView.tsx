@@ -15,6 +15,7 @@ export const AttendanceView: React.FC = () => {
     deleteSubject,
     overallStats,
     semesterSettings,
+    attendanceRecords,
   } = useApp();
 
   const [isSubjectModalOpen, setIsSubjectModalOpen] = useState<boolean>(false);
@@ -44,13 +45,19 @@ export const AttendanceView: React.FC = () => {
     }
   };
 
-  const handleSaveAdjustment = async (subjectId: string, present: number, absent: number) => {
+  const handleSaveAdjustment = async (
+    subjectId: string,
+    present: number,
+    absent: number,
+    baselineDate?: string
+  ) => {
     const sub = subjects.find((s) => s.id === subjectId);
     if (!sub) return;
     await saveSubject({
       ...sub,
       initialPresent: present,
       initialAbsent: absent,
+      baselineDate: baselineDate || undefined,
     });
   };
 
@@ -261,6 +268,19 @@ export const AttendanceView: React.FC = () => {
                         </div>
                       </div>
 
+                      {/* Baseline Pill if configured */}
+                      {stat.subject.baselineDate && (
+                        <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-bat-accent/10 border border-bat-accent/20 text-[11px] text-bat-accent font-mono">
+                          <span>Portal Baseline ({stat.subject.baselineDate}):</span>
+                          <strong>
+                            {stat.subject.initialPresent}/{stat.subject.initialPresent + stat.subject.initialAbsent} (
+                            {stat.subject.initialPresent + stat.subject.initialAbsent > 0
+                              ? ((stat.subject.initialPresent / (stat.subject.initialPresent + stat.subject.initialAbsent)) * 100).toFixed(1)
+                              : 100}%)
+                          </strong>
+                        </div>
+                      )}
+
                       {/* Status Advice */}
                       <p className="text-slate-700 dark:text-gotham-300 font-sans">
                         {isAbove ? (
@@ -337,6 +357,7 @@ export const AttendanceView: React.FC = () => {
           subject={adjustingSubject}
           currentStats={subjectStats.find((s) => s.subject.id === adjustingSubject.id)}
           targetPercentage={semesterSettings?.defaultTarget || 85}
+          records={attendanceRecords}
           onSaveAdjustment={handleSaveAdjustment}
         />
       )}

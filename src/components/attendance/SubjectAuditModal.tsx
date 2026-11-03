@@ -75,6 +75,9 @@ export const SubjectAuditModal: React.FC<SubjectAuditModalProps> = ({
               <div className="text-xs font-black text-white">
                 {stats.subject.initialPresent}/{stats.subject.initialPresent + stats.subject.initialAbsent}
               </div>
+              {stats.subject.baselineDate && (
+                <div className="text-[9px] text-gotham-400 mt-0.5">as of {stats.subject.baselineDate}</div>
+              )}
             </div>
           </div>
         </div>
@@ -105,12 +108,23 @@ export const SubjectAuditModal: React.FC<SubjectAuditModalProps> = ({
                   className="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-gotham-750 bg-white dark:bg-gotham-850 text-xs shadow-sm font-mono"
                 >
                   <div>
-                    <div className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200">
+                    <div className="flex items-center gap-1.5 font-bold text-slate-800 dark:text-slate-200 flex-wrap">
                       <Calendar size={13} className="text-bat-accent" />
                       <span>{r.date}</span>
                       <span className="text-gotham-400 font-normal">
                         • {r.source === 'extra' ? 'EXTRA' : `P${r.periodNumber}`}
                       </span>
+                      {stats.subject.baselineDate && (
+                        r.date <= stats.subject.baselineDate ? (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-gotham-750 text-slate-600 dark:text-gotham-400 font-normal">
+                            In baseline ({stats.subject.baselineDate})
+                          </span>
+                        ) : (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-normal">
+                            + Active
+                          </span>
+                        )
+                      )}
                     </div>
                     {r.note && (
                       <p className="text-[11px] text-gotham-400 mt-0.5">{r.note}</p>

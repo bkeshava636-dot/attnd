@@ -41,6 +41,7 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
   const [baselineMode, setBaselineMode] = useState<'counts' | 'percentage'>('counts');
   const [initialPercentage, setInitialPercentage] = useState('85');
   const [initialTotalClasses, setInitialTotalClasses] = useState('20');
+  const [baselineDate, setBaselineDate] = useState('');
 
   useEffect(() => {
     if (subjectToEdit) {
@@ -51,6 +52,7 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
       setColor(subjectToEdit.color || '#eab308');
       setInitialPresent(subjectToEdit.initialPresent.toString());
       setInitialAbsent(subjectToEdit.initialAbsent.toString());
+      setBaselineDate(subjectToEdit.baselineDate || '');
       const hasBaseline = subjectToEdit.initialPresent > 0 || subjectToEdit.initialAbsent > 0;
       setIsMiddleSemester(hasBaseline);
       if (hasBaseline) {
@@ -67,6 +69,7 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
       setColor(COLOR_PALETTES[totalSubjects % COLOR_PALETTES.length]);
       setInitialPresent('0');
       setInitialAbsent('0');
+      setBaselineDate('');
       setIsMiddleSemester(false);
       setBaselineMode('counts');
       setInitialPercentage('85');
@@ -103,6 +106,7 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
       isActive: subjectToEdit?.isActive ?? true,
       initialPresent: p,
       initialAbsent: a,
+      baselineDate: isMiddleSemester && baselineDate ? baselineDate : undefined,
       order: subjectToEdit?.order ?? totalSubjects + 1,
       createdAt: subjectToEdit?.createdAt || new Date().toISOString(),
     };
@@ -244,6 +248,40 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
                   <Percent size={12} />
                   <span>By Percentage (%)</span>
                 </button>
+              </div>
+
+              {/* As-of Cutoff Date */}
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 dark:text-gotham-300 mb-1">
+                  AS OF DATE (OFFICIAL REPORT CUTOFF)
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="date"
+                    value={baselineDate}
+                    onChange={(e) => setBaselineDate(e.target.value)}
+                    className="flex-1 px-3 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-gotham-750 bg-white dark:bg-gotham-850 text-slate-900 dark:text-white font-mono"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setBaselineDate(new Date().toISOString().split('T')[0])}
+                    className="px-2 py-1 text-[11px] font-mono border border-slate-300 dark:border-gotham-750 rounded-lg hover:bg-slate-100 dark:hover:bg-gotham-800"
+                  >
+                    Today
+                  </button>
+                  {baselineDate && (
+                    <button
+                      type="button"
+                      onClick={() => setBaselineDate('')}
+                      className="px-2 py-1 text-[11px] font-mono text-slate-400 hover:text-slate-600"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                <p className="text-[10px] text-slate-400 dark:text-gotham-400 mt-0.5">
+                  Records on or before this date will be replaced by the baseline (not double-counted).
+                </p>
               </div>
 
               {baselineMode === 'percentage' ? (

@@ -28,6 +28,7 @@ export interface Subject {
   isActive: boolean;
   initialPresent: number;
   initialAbsent: number;
+  baselineDate?: string; // YYYY-MM-DD - Cutoff date up to which initialPresent/initialAbsent applies
   order: number;
   createdAt: string;
 }

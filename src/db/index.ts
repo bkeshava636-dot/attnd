@@ -414,6 +414,7 @@ export async function resetCurrentSemester(options: {
         ...sub,
         initialPresent: 0,
         initialAbsent: 0,
+        baselineDate: undefined,
       });
     }
   } else {
@@ -702,6 +703,7 @@ export async function exportClassTemplate(
       ...s,
       initialPresent: 0,
       initialAbsent: 0,
+      baselineDate: undefined,
     }));
     template.timetable = await db.getAll('timetable');
   }
@@ -807,12 +809,16 @@ export async function applyClassTemplate(
           initialAbsent: applyOptions.preserveExistingAttendance
             ? (matchedExisting.initialAbsent || 0)
             : 0,
+          baselineDate: applyOptions.preserveExistingAttendance
+            ? matchedExisting.baselineDate
+            : undefined,
         });
       } else {
         await subjectsStore.put({
           ...tmplSub,
           initialPresent: 0,
           initialAbsent: 0,
+          baselineDate: undefined,
         });
       }
     }

@@ -458,6 +458,8 @@ export function calculateAttendanceMetrics(
   subjectStats: SubjectAttendanceStats[];
   overall: OverallAttendanceStats;
 } {
+  const subjectMap = new Map<string, Subject>(subjects.map(s => [s.id, s]));
+
   // Aggregate per subject
   const statsMap = new Map<string, {
     present: number;
@@ -476,6 +478,14 @@ export function calculateAttendanceMetrics(
   }
 
   for (const r of records) {
+    const sub = subjectMap.get(r.subjectId);
+    // If an authoritative baseline date is set for this subject (e.g. official portal as of 24 Oct),
+    // records on or before that date are already accounted for in initialPresent/initialAbsent.
+    // Only records strictly after baselineDate are accumulated on top.
+    if (sub && sub.baselineDate && r.date <= sub.baselineDate) {
+      continue;
+    }
+
     let stat = statsMap.get(r.subjectId);
     if (!stat) {
       stat = { present: 0, absent: 0, cancelled: 0, unmarked: 0 };
