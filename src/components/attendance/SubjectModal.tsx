@@ -87,7 +87,7 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
       if (baselineMode === 'percentage') {
         const pct = parseFloat(initialPercentage) || 0;
         const tot = parseInt(initialTotalClasses, 10);
-        const res = calculateFromPercentage(pct, tot > 0 ? tot : undefined);
+        const res = calculateFromPercentage(pct, tot > 0 ? tot : 40);
         p = res.present;
         a = res.absent;
       } else {
@@ -325,7 +325,11 @@ export const SubjectModal: React.FC<SubjectModalProps> = ({
                       <button
                         key={preset}
                         type="button"
-                        onClick={() => setInitialPercentage(preset.toString())}
+                        onClick={() => {
+                          setInitialPercentage(preset.toString());
+                          const exact = calculateFromPercentage(preset, 40);
+                          setInitialTotalClasses(exact.total.toString());
+                        }}
                         className={`px-1.5 py-0.5 rounded text-[10px] border ${
                           parseFloat(initialPercentage) === preset
                             ? 'bg-bat-gold/20 text-bat-accent border-bat-gold'

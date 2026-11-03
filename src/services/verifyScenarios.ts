@@ -5,6 +5,7 @@ import {
   calculateAttendanceMetrics,
   type EngineContext,
 } from './attendanceEngine';
+import { calculateFromPercentage } from '../components/attendance/ManualAdjustModal';
 import type {
   SemesterSettings,
   Subject,
@@ -660,7 +661,55 @@ function getContext(): EngineContext {
   assert(stats.subjectStats[0].percentage === expectedPct, `Scenario 25: Percentage is ${expectedPct}% (got ${stats.subjectStats[0].percentage}%)`);
 }
 
+// SCENARIO 26: Setting 85% baseline never dilutes to 84.21% (exact whole-number ratio matching)
+{
+  // Test calculateFromPercentage directly
+  const ratioNear38 = calculateFromPercentage(85, 38);
+  assert(ratioNear38.actualPercentage === 85, `Scenario 26: 85% near 38 conducted classes yields exact 85% (got ${ratioNear38.actualPercentage}%), NOT 84.21%`);
+  assert(ratioNear38.present === 34 && ratioNear38.absent === 6 && ratioNear38.total === 40, `Scenario 26: Ratio is 34/40`);
+
+  const ratioNear19 = calculateFromPercentage(85, 19);
+  assert(ratioNear19.actualPercentage === 85, `Scenario 26: 85% near 19 conducted classes yields exact 85% (got ${ratioNear19.actualPercentage}%), NOT 84.21%`);
+  assert(ratioNear19.present === 17 && ratioNear19.absent === 3 && ratioNear19.total === 20, `Scenario 26: Ratio is 17/20`);
+
+  // Verify across full range of integer percentages
+  for (const p of [70, 75, 80, 85, 90, 95, 100]) {
+    const res = calculateFromPercentage(p, 40);
+    assert(res.actualPercentage === p, `Scenario 26: Preset ${p}% yields exact ${p}% (got ${res.actualPercentage}%)`);
+    assert(res.isExact === true, `Scenario 26: ${p}% isExact is true`);
+  }
+
+  // End-to-end: Subject configured with 85% baseline as of Today
+  const todayStr = '2026-11-03';
+  const sub85: Subject = {
+    id: 'sub_exact_85',
+    name: 'Physics',
+    shortName: 'PHY',
+    type: 'lecture',
+    color: '#8b5cf6',
+    isActive: true,
+    initialPresent: ratioNear38.present, // 34
+    initialAbsent: ratioNear38.absent,   // 6
+    baselineDate: todayStr,
+    order: 2,
+    createdAt: '2026-08-01T00:00:00Z',
+  };
+
+  // Past logs up to today must be superseded, giving exactly 85.0%
+  const priorLogs: AttendanceRecord[] = [
+    { id: 'l1', date: '2026-10-15', periodNumber: 1, subjectId: sub85.id, status: 'absent', source: 'regular', updatedAt: '2026-10-15T10:00:00Z' },
+    { id: 'l2', date: '2026-10-20', periodNumber: 1, subjectId: sub85.id, status: 'absent', source: 'regular', updatedAt: '2026-10-20T10:00:00Z' },
+    { id: 'l3', date: '2026-11-03', periodNumber: 1, subjectId: sub85.id, status: 'present', source: 'regular', updatedAt: '2026-11-03T10:00:00Z' },
+  ];
+
+  const metrics = calculateAttendanceMetrics([sub85], priorLogs, 85);
+  assert(metrics.subjectStats[0].present === 34, `Scenario 26: Present is 34`);
+  assert(metrics.subjectStats[0].absent === 6, `Scenario 26: Absent is 6`);
+  assert(metrics.subjectStats[0].conducted === 40, `Scenario 26: Conducted is 40`);
+  assert(metrics.subjectStats[0].percentage === 85.0, `Scenario 26: Subject attendance is EXACTLY 85.0% (got ${metrics.subjectStats[0].percentage}%)`);
+}
+
 console.log("\n=======================================================");
-console.log("ALL 25 ADVANCED ATTENDANCE SCENARIOS VERIFIED 100% PASSING!");
+console.log("ALL 26 ADVANCED ATTENDANCE SCENARIOS VERIFIED 100% PASSING!");
 console.log("=======================================================\n");
 
