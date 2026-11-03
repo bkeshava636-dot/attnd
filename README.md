@@ -2,12 +2,12 @@
 
 > Smart, offline student attendance tracker and class schedule for Android.
 
-[![Download APK](https://img.shields.io/badge/Download_APK-v1.0.0-FFD700?style=for-the-badge&logo=android&logoColor=black&labelColor=1a1a1a)](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk)
+[![Download APK](https://img.shields.io/badge/Download_APK-Latest_Build-FFD700?style=for-the-badge&logo=android&logoColor=black&labelColor=1a1a1a)](https://github.com/bkeshava636-dot/attnd/raw/main/Attnd-release.apk)
 [![Release](https://img.shields.io/badge/Release-v1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/bkeshava636-dot/attnd/releases/latest)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20PWA-2ea44f?style=for-the-badge)](https://github.com/bkeshava636-dot/attnd)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
-[👉 **Direct Download: Attnd-release.apk**](https://github.com/bkeshava636-dot/attnd/releases/download/v1.0.0/Attnd-release.apk) *(3.5 MB • Android 8.0+)*
+[👉 **Direct Download: Attnd-release.apk (Latest Build)**](https://github.com/bkeshava636-dot/attnd/raw/main/Attnd-release.apk) *(3.5 MB • Android 8.0+)*
 
 ---
 
@@ -20,7 +20,7 @@
 - **Attendance Math**:
   $$\text{Attendance \%} = \frac{\text{Present}}{\text{Present} + \text{Absent}} \times 100$$
   Cancelled classes are excluded from the denominator.
-- **Dual-Mode Baseline Adjustments**: Adjust initial baseline by count of classes or target percentage.
+- **Authoritative Baseline & As-Of Date**: Adjust baseline by count or percentage with an official cutoff date (e.g., as of 24 Oct). Past marked records on or before that date are automatically superseded so numbers match your proctor portal exactly without double-counting. Class records marked after the date accumulate forward.
 
 ### 2. ⏰ Flexible Class Timings & Breaks
 - Configure period timings (P1, P2, P3...) with start and end times.
